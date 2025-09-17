@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   test_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 09:05:00 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 13:54:48 by dsagong          ###   ########.fr       */
+/*   Created: 2025/09/17 14:56:16 by dsagong           #+#    #+#             */
+/*   Updated: 2025/09/17 14:58:27 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types.h"
-#include "output.h"
+#include <fcntl.h>
+#include <errno.h>
 #include "utils.h"
+#include <string.h>
 
-int	init_shell(t_shell *shell)
+int	test_input_file(char *filename)
 {
-	if (!shell)
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		print_error(filename, strerror(errno));
 		return (FAILURE);
-	shell->envp_list = NULL;
-	shell->env_array = NULL;
-	shell->last_exit_status = 0;
-	shell->exit_flag = 0;
-	shell->signal_mode = SIG_INTERACTIVE;
+	}
+	close(fd);
 	return (SUCCESS);
 }

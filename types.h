@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:41:47 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/17 14:44:42 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 15:28:23 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,35 +88,35 @@ typedef struct s_prompt
 
 typedef struct s_filename
 {
-    char    *filename;
+	char	*filename;
 	int		hd;
-    int     flag;
+	int		flag;
 	int		append_mode;
-}   t_filename;
+}	t_filename;
 
-typedef struct	s_file
+typedef struct s_file
 {
-	t_filename	*input_file;
-	t_filename	*output_file;
+	t_filename		*input_file;
+	t_filename		*output_file;
 	struct s_file	*next;
 }	t_file;
 
-typedef struct  s_cmd
+typedef struct s_cmd
 {
-    char    **args;
-	t_file	*file;
-	int			hd;
-    struct s_cmd    *next;
-}   t_cmd;
+	char			**args;
+	t_file			*file;
+	int				hd;
+	struct s_cmd	*next;
+}	t_cmd;
 
-typedef struct  s_shell
+typedef struct s_shell
 {
-    t_envp   *envp_list;
-    char    **env_array;
-    int     last_exit_status;
-    int     exit_flag;
-    int     signal_mode;
-}   t_shell;
+	t_envp	*envp_list;
+	char	**env_array;
+	int		last_exit_status;
+	int		exit_flag;
+	int		signal_mode;
+}	t_shell;
 
 typedef struct s_exec_info
 {

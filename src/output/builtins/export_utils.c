@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 16:29:24 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/10 13:33:26 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 16:04:14 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	update_env_array(t_shell *shell)
 {
 	if (shell->env_array)
 	{
-		free(shell->env_array);
+		free_env_array(shell->env_array);
 		shell->env_array = NULL;
 	}
 	shell->env_array = env_list_to_array(shell->envp_list);

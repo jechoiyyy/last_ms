@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 17:14:02 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/16 00:37:58 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 13:41:46 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static char	*get_expanded_value(char *p, size_t len, t_envp *envp_lst)
 	expanded = NULL;
 	while (envp_lst)
 	{
-		if (ft_strncmp(envp_lst->key, p, len) == 0\
-		&& envp_lst->key[len] == '\0')
+		if (ft_strncmp(envp_lst->key, p, len) == 0
+			&& envp_lst->key[len] == '\0')
 		{
 			expanded = ft_strdup(envp_lst->value);
 			return (expanded);

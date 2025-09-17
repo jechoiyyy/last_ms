@@ -52,7 +52,7 @@ SIGNAL_LOC = $(addprefix $(SIGNAL_DIR)/, $(SIGNAL_SRC))
 
 
 UTILS_DIR = $(SRC_DIR)/utils
-UTILS_SRC = is.c charjoin_and_free.c shell_cleanup.c utils.c has_whitespace.c fd_utils.c
+UTILS_SRC = is.c charjoin_and_free.c shell_cleanup.c utils.c has_whitespace.c fd_utils.c env_list_to_array.c open_file.c test_input_file.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 

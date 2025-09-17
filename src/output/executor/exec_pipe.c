@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 19:57:14 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 14:44:35 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 15:42:24 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static pid_t	*allocate_pids(int **pipe_fds, int cmd_count)
 	return (pids);
 }
 
-static int	execute_all_commands(t_cmd *commands, t_shell *shell,\
-		int *pipe_fds, pid_t *pids)
+static int	execute_all_commands(t_cmd *commands, t_shell *shell, \
+								int *pipe_fds, pid_t *pids)
 {
 	t_cmd		*current;
 	t_exec_info	info;

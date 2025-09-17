@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:05:55 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 14:14:47 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:24:39 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ char	*ft_dirname(const char *path)
 	if (!last_slash)
 		return (free(result), ft_strdup("."));
 	if (last_slash == result)
-	{
-		result[1] = '\0';
-		return (result);
-	}
+		return (result[1] = '\0', result);
 	*last_slash = '\0';
 	return (result);
 }

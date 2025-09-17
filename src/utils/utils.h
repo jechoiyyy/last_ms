@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 09:51:37 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/17 15:11:59 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:58:51 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define UTILS_H
 # include "types.h"
 # include "libft.h"
-#include "list.h"
 # include <stdio.h>
 
 int		is_space(char c);
@@ -32,14 +31,16 @@ char	*ft_dirname(const char *path);
 char	*ft_strcat(char *dest, const char *src);
 
 int		init_shell(t_shell *shell);
-t_envp	*create_env_node(char *env_str);
-void	add_env_node(t_envp **head, t_envp *new_node);
 char	**env_list_to_array(t_envp *envp_list);
 void	free_env_list(t_envp *head);
 void	free_env_array(char **env_array);
 void	cleanup_shell(t_shell *shell);
-void	clear_list(t_prompt *prompt);
 void	print_error(char *cmd, char *msg);
+
+int		open_input_file(char *filename);
+int		open_output_file(char *filename, int append_mode);
+
+int		test_input_file(char *filename);
 
 void	check_fd_valid(int fd);
 void	print_fd_content(int fd);

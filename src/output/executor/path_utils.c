@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 19:57:07 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 13:10:49 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:01:22 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,11 @@ static int	access_process(char *command)
 		return (FAILURE);
 	}
 	if (stat(command, &st) == 0 && S_ISDIR(st.st_mode))
-	{
-		print_error(command, "Is a directory");
-		g_exit_status = 126;
-		return (FAILURE);
-	}
+		return (print_error(command, "Is a directory"), g_exit_status = 126, \
+				FAILURE);
 	if (access(command, X_OK) != 0)
-	{
-		print_error(command, "Permission denied");
-		g_exit_status = 126;
-		return (FAILURE);
-	}
+		return (print_error(command, "Permission denied"), g_exit_status = 126, \
+				FAILURE);
 	return (SUCCESS);
 }
 
