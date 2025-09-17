@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:12:54 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:36:44 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 13:21:46 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	ft_exit(t_cmd *cmd, t_shell *shell)
 	long	code;
 
 	printf("exit\n");
+	shell->exit_flag = 1;
 	if (!cmd->args[1])
 		code = 0;
 	else if (!is_numeric(cmd->args[1]))
@@ -68,10 +69,10 @@ int	ft_exit(t_cmd *cmd, t_shell *shell)
 	{
 		print_error("exit", "too many arguments");
 		code = 1;
+		shell->exit_flag = 0;
 	}
 	else
 		code = ft_atol(cmd->args[1]);
-	shell->exit_flag = 1;
 	g_exit_status = (int)(code % 256);
 	cleanup_shell(shell);
 	return (g_exit_status);

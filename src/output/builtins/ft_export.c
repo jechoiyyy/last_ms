@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:35:15 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 00:39:27 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 10:51:07 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ static int	process_export_arg(t_shell *shell, char *arg)
 		return (FAILURE);
 	if (!is_valid_identifier(key))
 	{
-		print_error("export", "not a valid identifier");
+		write(STDERR_FILENO, "minishell: ", 11);
+		write(STDERR_FILENO, "export: `" , 9);
+		write(STDERR_FILENO, arg, ft_strlen(arg));
+		write(STDERR_FILENO, "': not a valid identifier\n", 26);
 		return (free(key), FAILURE);
 	}
 	value = extract_value(arg);
 	if (value == NULL)
-		value = ft_strdup(" ");
+		value = ft_strdup("");
 	result = set_env_variable(shell, key, value);
 	free(key);
 	if (value)

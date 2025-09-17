@@ -6,12 +6,11 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:00:39 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:45:15 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 10:37:07 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
-#include <stdio.h>
 
 int	input_file_process(t_file *file)
 {

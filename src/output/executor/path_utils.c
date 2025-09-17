@@ -6,12 +6,13 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 19:57:07 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:43:00 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 13:10:49 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include <sys/stat.h>
+#include <errno.h>
 
 static char	*join_path(char *dir, char *command)
 {
@@ -78,20 +79,25 @@ static int	access_process(char *command)
 
 	if (access(command, F_OK) != 0)
 	{
-		print_error(command, "No such file or directory");
-		g_exit_status = 127;
+		if (errno == ENOTDIR)
+		{
+			print_error(command, "Not a directory");
+			g_exit_status = 126;
+		}
+		else
+		{
+			print_error(command, "No such file or directory");
+			g_exit_status = 127;
+		}
 		return (FAILURE);
 	}
-	if (access(command, X_OK) == 0)
+	if (stat(command, &st) == 0 && S_ISDIR(st.st_mode))
 	{
-		if (stat(command, &st) == 0 && S_ISDIR(st.st_mode))
-		{
-			print_error(command, "Is a directory");
-			g_exit_status = 126;
-			return (FAILURE);
-		}
+		print_error(command, "Is a directory");
+		g_exit_status = 126;
+		return (FAILURE);
 	}
-	else
+	if (access(command, X_OK) != 0)
 	{
 		print_error(command, "Permission denied");
 		g_exit_status = 126;
