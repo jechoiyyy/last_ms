@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 21:43:39 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 12:37:27 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:41:03 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,26 @@ t_cmd	*parse_simple_command(t_token **current, t_prompt *prompt)
 	return (cmd);
 }
 
-int	parse_redirections(t_token **current, t_cmd *cmd, t_prompt *prompt)
+int	parse_redirections(t_token **c, t_cmd *cmd, t_prompt *prompt)
 {
 	t_token_type	redir_type;
+	t_token_type	t;
 
-	if (!current || !*current || !cmd)
+	if (!c || !*c || !cmd)
 		return (FAILURE);
-	redir_type = (*current)->type;
-	*current = (*current)->next;
-	if (!*current || ((*current)->type != T_WORD && (*current)->type != T_CORRECT_FILNAME && (*current)->type != T_WRONG_FILNAME))
+	redir_type = (*c)->type;
+	*c = (*c)->next;
+	t = (*c)->type;
+	if (!*c || (t != T_WORD && t != T_CORRECT_FILNAME && t != T_WRONG_FILNAME))
 	{
 		return (FAILURE);
 	}
 	if (redir_type == T_REDIR_IN || redir_type == T_HEREDOC)
-		set_input_file(cmd, *current, prompt, redir_type);
+		set_input_file(cmd, *c, prompt, redir_type);
 	else if (redir_type == T_REDIR_OUT)
-		set_output_file(cmd, *current, 0, redir_type);
+		set_output_file(cmd, *c, 0, redir_type);
 	else if (redir_type == T_APPEND)
-		set_output_file(cmd, *current, 1, redir_type);
-	*current = (*current)->next;
+		set_output_file(cmd, *c, 1, redir_type);
+	*c = (*c)->next;
 	return (SUCCESS);
 }

@@ -6,11 +6,24 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 17:32:35 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 00:39:53 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 15:00:32 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+
+static int	ivi_utils(char c, int flag)
+{
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	if (c == '_')
+		return (1);
+	if (flag && (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}
 
 int	is_valid_identifier(char *name)
 {
@@ -18,17 +31,12 @@ int	is_valid_identifier(char *name)
 
 	if (!name || !*name)
 		return (0);
-	if (!((name[0] >= 'a' && name[0] <= 'z') || \
-		(name[0] >= 'A' && name[0] <= 'Z') || \
-		name[0] == '_'))
+	if (!ivi_utils(name[0], 0))
 		return (0);
 	i = 1;
 	while (name[i])
 	{
-		if (!((name[i] >= 'a' && name[i] <= 'z') || \
-			(name[i] >= 'A' && name[i] <= 'Z') || \
-			(name[i] >= '0' && name[i] <= '9') || \
-			name[i] == '_'))
+		if (!ivi_utils(name[i], 1))
 			return (0);
 		i++;
 	}

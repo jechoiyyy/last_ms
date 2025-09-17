@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/17 15:02:17 by jechoi            #+#    #+#             */
+/*   Updated: 2025/09/17 15:11:30 by jechoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "types.h"
 #include "setup.h"
 #include "input.h"
@@ -30,13 +42,11 @@ int	main(int ac, char **av, char **envp)
 		}
 		free(prompt.input);
 		prompt.input = NULL;
-		clear_token_list(&prompt.token_lst);
-		clear_hd_list(&prompt.hd_lst);
+		clear_list(&prompt);
 	}
 	cleanup_shell(&shell);
 	free(prompt.input);
-	clear_token_list(&prompt.token_lst);
+	clear_list(&prompt);
 	clear_envp_list(&prompt.envp_lst);
-	clear_hd_list(&prompt.hd_lst);
 	return (g_exit_status);
 }

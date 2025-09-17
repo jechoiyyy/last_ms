@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:30:29 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 15:36:11 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:16:57 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int		open_input_file(char *filename);
 int		open_output_file(char *filename, int append_mode);
 int		input_file_process(t_file *file);
 int		single_cmd(t_cmd *commands, t_shell *shell);
+int		util_create_pipes(int **pipe_fds, int cmd_count);
+int		create_pipes(int **pipe_fds, int cmd_count);
 
 #endif

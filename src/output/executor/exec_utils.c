@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:29:54 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:40:19 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:16:08 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,57 @@ char	*get_path_env(t_shell *shell)
 		current = current->next;
 	}
 	return (NULL);
+}
+
+int	util_create_pipes(int **pipe_fds, int cmd_count)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < cmd_count - 1)
+	{
+		if (pipe(&(*pipe_fds)[i * 2]) == -1)
+		{
+			perror("pipe");
+			j = 0;
+			while (j < i)
+			{
+				if ((*pipe_fds)[j * 2] >= 0)
+					close((*pipe_fds)[j * 2]);
+				if ((*pipe_fds)[j * 2 + 1] >= 0)
+					close((*pipe_fds)[j * 2 + 1]);
+				j++;
+			}
+			free(*pipe_fds);
+			*pipe_fds = NULL;
+			return (FAILURE);
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
+int	create_pipes(int **pipe_fds, int cmd_count)
+{
+	int	i;
+
+	if (cmd_count <= 1)
+	{
+		*pipe_fds = NULL;
+		return (SUCCESS);
+	}
+	*pipe_fds = malloc(sizeof(int) * 2 * (cmd_count - 1));
+	if (!*pipe_fds)
+		return (FAILURE);
+	i = 0;
+	while (i < (cmd_count - 1) * 2)
+	{
+		(*pipe_fds)[i] = -1;
+		i++;
+	}
+	i = 0;
+	if (util_create_pipes(pipe_fds, cmd_count) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }

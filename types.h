@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:41:47 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/16 12:44:54 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:44:42 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,11 @@ typedef struct  s_shell
     int     exit_flag;
     int     signal_mode;
 }   t_shell;
+
+typedef struct s_exec_info
+{
+	int	cmd_index;
+	int	cmd_count;
+}	t_exec_info;
 
 #endif

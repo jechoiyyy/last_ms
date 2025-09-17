@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:01:35 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:17:18 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/17 14:37:37 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_file	*create_file_node(t_filename *new_filename, t_token_type redir)
 	return (new_node);
 }
 
-static void	add_file_to_list(t_file **head, t_filename *new_filename, \
+static void	add_file_to_list(t_file **head, t_filename *new_filename,\
 		t_token_type redir)
 {
 	t_file	*new_node;
@@ -69,7 +69,7 @@ static void	add_file_to_list(t_file **head, t_filename *new_filename, \
 	current->next = new_node;
 }
 
-void	set_input_file(t_cmd *cmd, t_token *current, \
+void	set_input_file(t_cmd *cmd, t_token *current,\
 	t_prompt *prompt, t_token_type	redir_type)
 {
 	t_filename	*new_file;
@@ -99,7 +99,7 @@ void	set_input_file(t_cmd *cmd, t_token *current, \
 	add_file_to_list(&(cmd->file), new_file, redir_type);
 }
 
-void	set_output_file(t_cmd *cmd, t_token *current, \
+void	set_output_file(t_cmd *cmd, t_token *current,\
 	int append, t_token_type redir)
 {
 	t_filename	*new_file;

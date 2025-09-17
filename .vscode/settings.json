@@ -56,6 +56,8 @@
   "files.associations": {
     "*.dbclient-js": "javascript",
     "*.sol": "solidity",
-    "typeinfo": "c"
+    "typeinfo": "c",
+    "builtins.h": "c",
+    "executor.h": "c"
   }
 }

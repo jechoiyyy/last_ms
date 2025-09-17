@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_cleanup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 10:49:24 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/15 16:29:47 by dsagong          ###   ########.fr       */
+/*   Updated: 2025/09/17 15:11:04 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void	cleanup_shell(t_shell *shell)
 		free_env_array(shell->env_array);
 		shell->env_array = NULL;
 	}
+}
+
+void	clear_list(t_prompt *prompt)
+{
+	clear_token_list(&prompt->token_lst);
+	clear_hd_list(&prompt->hd_lst);
 }
 
 void	print_error(char *cmd, char *msg)
