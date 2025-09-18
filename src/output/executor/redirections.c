@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:00:39 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 14:14:23 by dsagong          ###   ########.fr       */
+/*   Updated: 2025/09/18 21:45:31 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,16 @@ static int	handle_single_input(t_filename *input_file)
 
 	if (input_file->hd && input_file->hd != -1)
 		return (dup_input_fd(input_file->hd, "dup2 heredoc"));
-	else if (input_file->filename && ft_strlen(input_file->filename) > 0)
+	else if (input_file->filename)
 	{
+		if (ft_strlen(input_file->filename) == 0)
+		{
+			print_error(input_file->filename, "No such file or directory");
+			return (FAILURE);
+		}
 		if (input_file->flag == 1)
-			return (print_error(input_file->filename, "ambiguous redirect"), \
-					FAILURE);
+			return (print_error(input_file->filename, "ambiguous redirect"),\
+				FAILURE);
 		fd_in = open_input_file(input_file->filename);
 		if (fd_in == -1)
 			return (FAILURE);
@@ -68,7 +73,7 @@ static int	output_file_process(t_file *file)
 		return (FAILURE);
 	if (output_file->flag == 1)
 		return (print_error(output_file->filename, "ambiguous redirect"), \
-		FAILURE);
+				FAILURE);
 	fd_out = open_output_file(output_file->filename, output_file->append_mode);
 	if (fd_out == -1)
 		return (FAILURE);
@@ -92,14 +97,12 @@ int	setup_redirections(t_cmd *cmd)
 	current = cmd->file;
 	while (current)
 	{
-		if (current->input_file && current->input_file->filename
-			&& ft_strlen(current->input_file->filename) > 0)
+		if (current->input_file && current->input_file->filename)
 		{
 			if (input_file_process(current) == FAILURE)
 				return (FAILURE);
 		}
-		if (current->output_file && current->output_file->filename
-			&& ft_strlen(current->output_file->filename) > 0)
+		if (current->output_file && current->output_file->filename)
 		{
 			if (output_file_process(current) == FAILURE)
 				return (FAILURE);

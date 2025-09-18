@@ -19,8 +19,8 @@
 #include "split_word.h"
 #include "remove.h"
 #include "herdoc.h"
+#include "global.h"
 
-//입력에 문자가 들어올때까지 계속 이 함수에서 입력받기
 int	get_user_input(t_prompt *prompt)
 {
 	while (1)
@@ -43,7 +43,6 @@ int	get_user_input(t_prompt *prompt)
 	return (1);
 }
 
-//렉싱 로직
 static t_token	*lex_input(t_prompt *prompt)
 {
 	t_token	*tokens;
@@ -81,12 +80,6 @@ static int	expand_and_split(t_prompt *prompt)
 	return (1);
 }
 
-//1. 입력받기
-//2. 렉싱하기
-//3. 문법검사
-//4. herdoc처리
-//5. 구문오류 출력
-//6. GRAMMAR_OK일때 확장, 분리 및 quote제거
 int	input_process(t_prompt *prompt)
 {
 	t_grammar_status	status;

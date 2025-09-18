@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:21:27 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/16 20:48:16 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/18 20:46:13 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	signal_handler_noninteractive(int sig)
 	if (sig == SIGINT)
 		write(STDOUT_FILENO, "\n", 1);
 	else if (sig == SIGQUIT)
-		write(STDOUT_FILENO, "Quit\n", 5);
+		write(STDOUT_FILENO, "Quit(core dumped)\n", 19);
 }
 
 void	ignore_sigquit(void)

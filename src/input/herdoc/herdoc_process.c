@@ -6,7 +6,7 @@
 /*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:59:44 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/15 16:20:43 by dsagong          ###   ########.fr       */
+/*   Updated: 2025/09/18 15:22:02 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,19 @@
 #define DELIM_PRINT "minishell: warning: here-document \
 delimited by end-of-file (wanted `%s')\n"
 
-static void	heredoc_child(char *delim, int write_fd, t_envp *envp)
+static char	*process_line(char *line, t_delim_info *delim_info, t_envp *envp)
+{
+	char	*expanded;
+
+	if (delim_info->quoted_flag)
+		expanded = ft_strdup(line);
+	else
+		expanded = expand_process(line, envp);
+	free(line);
+	return (expanded);
+}
+
+static void	heredoc_child(t_delim_info delim_info, int write_fd, t_envp *envp)
 {
 	char	*line;
 	char	*expanded;
@@ -34,17 +46,16 @@ static void	heredoc_child(char *delim, int write_fd, t_envp *envp)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line && printf(DELIM_PRINT, delim))
+		if (!line && printf(DELIM_PRINT, delim_info.cooked_delim))
 			break ;
-		if (ft_strcmp(line, delim) == 0)
+		if (ft_strcmp(line, delim_info.cooked_delim) == 0)
 		{
 			free(line);
 			break ;
 		}
-		expanded = expand_process(line, envp);
+		expanded = process_line(line, &delim_info, envp);
 		if (!expanded)
-			exit(1);
-		free(line);
+			exit(EXIT_FAILURE);
 		ft_putendl_fd(expanded, write_fd);
 		free(expanded);
 	}
@@ -69,7 +80,7 @@ int	read_heredoc(t_prompt *prompt, t_delim_info delim_info)
 	if (pid == 0)
 	{
 		close(fd[0]);
-		heredoc_child(delim_info.cooked_delim, fd[1], prompt->envp_lst);
+		heredoc_child(delim_info, fd[1], prompt->envp_lst);
 	}
 	close(fd[1]);
 	waitpid(pid, &status, 0);

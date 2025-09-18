@@ -6,7 +6,7 @@
 /*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 13:34:51 by dsagong           #+#    #+#             */
-/*   Updated: 2025/09/17 13:39:00 by dsagong          ###   ########.fr       */
+/*   Updated: 2025/09/17 17:47:40 by dsagong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av, char **envp)
 	t_shell		shell;
 
 	if (ac != 1 || !av || ready_minishell(&prompt, &shell, envp) == 0)
-		return (-1);
+		return (1);
 	while (!shell.exit_flag)
 	{
 		if (input_process(&prompt) == 0)

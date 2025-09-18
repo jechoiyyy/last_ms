@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsagong <dsagong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 20:29:54 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/17 15:42:04 by dsagong          ###   ########.fr       */
+/*   Updated: 2025/09/18 21:45:00 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,12 @@ int	create_pipes(int **pipe_fds, int cmd_count)
 	if (util_create_pipes(pipe_fds, cmd_count) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
+}
+
+void	print_signal(int exit_status)
+{
+	if (exit_status == 130)
+		write(STDOUT_FILENO, "\n", 1);
+	else if (exit_status == 131)
+		write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
 }
