@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:00:39 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/18 21:45:31 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/19 10:45:39 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	handle_single_input(t_filename *input_file)
 			return (FAILURE);
 		}
 		if (input_file->flag == 1)
-			return (print_error(input_file->filename, "ambiguous redirect"),\
+			return (print_error(input_file->filename, "ambiguous redirect"), \
 				FAILURE);
 		fd_in = open_input_file(input_file->filename);
 		if (fd_in == -1)

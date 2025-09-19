@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 19:57:14 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/18 21:44:36 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/19 10:45:20 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static pid_t	*allocate_pids(int **pipe_fds, int cmd_count)
 	return (pids);
 }
 
-static int	execute_all_commands(t_cmd *commands, t_shell *shell,\
+static int	execute_all_commands(t_cmd *commands, t_shell *shell, \
 								int *pipe_fds, pid_t *pids)
 {
 	t_cmd		*current;

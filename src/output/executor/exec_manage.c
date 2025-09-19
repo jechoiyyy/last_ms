@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:00:08 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/18 21:44:16 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/19 10:45:00 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	wait_for_children(pid_t *pids, int count)
 	return (exit_status);
 }
 
-void	setup_child_process(t_cmd *cmd, int *pipe_fds,\
-							int cmd_index, int cmd_count)
+void	setup_child_process(t_cmd *cmd, int *pipe_fds, \
+		int cmd_index, int cmd_count)
 {
 	if (!(cmd->hd && cmd->hd != -1) && cmd_index > 0)
 	{

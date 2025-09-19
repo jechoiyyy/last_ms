@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:30:29 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/18 21:45:12 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/19 10:45:31 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		execute_external(t_cmd *cmd, t_shell *shell);
 char	*find_executable(char *command, t_shell *shell);
 pid_t	fork_process(void);
 int		wait_for_children(pid_t *pids, int count);
-void	setup_child_process(t_cmd *cmd, int *pipe_fds,\
+void	setup_child_process(t_cmd *cmd, int *pipe_fds, \
 		int cmd_index, int cmd_count);
 void	setup_parent_process(int *pipe_fds, int cmd_index, int cmd_count);
 void	close_all_pipes(int *pipe_fds, int pipe_count);

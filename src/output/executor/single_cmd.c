@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:48:35 by jechoi            #+#    #+#             */
-/*   Updated: 2025/09/18 21:46:19 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/09/19 10:45:47 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	validate_redirections(t_cmd *cmd)
 			&& ft_strlen(current->input_file->filename) > 0)
 		{
 			if (current->input_file->flag == 1)
-				return (print_error(current->input_file->filename,\
+				return (print_error(current->input_file->filename, \
 						"ambiguous redirect"), FAILURE);
 			if (current->input_file->hd == -1)
 				if (test_input_file(current->input_file->filename) == FAILURE)
@@ -36,7 +36,7 @@ static int	validate_redirections(t_cmd *cmd)
 		if (current->output_file && current->output_file->filename
 			&& ft_strlen(current->output_file->filename) > 0)
 			if (current->output_file->flag == 1)
-				return (print_error(current->output_file->filename,\
+				return (print_error(current->output_file->filename, \
 						"ambiguous redirect"), FAILURE);
 		current = current->next;
 	}
